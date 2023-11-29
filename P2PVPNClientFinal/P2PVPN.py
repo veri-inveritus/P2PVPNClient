@@ -12,7 +12,7 @@ class WireGuardVPNPeer:
         # Generate a private key using the 'wg genkey' command
         result = subprocess.run(["wg", "genkey"], capture_output=True, text=True)
         if result.returncode == 0:
-            private_key = result.stdout.strip()
+            return result.stdout.strip()
         else:
             raise Exception(f"Failed to generate private key: {result.stderr}")
 
