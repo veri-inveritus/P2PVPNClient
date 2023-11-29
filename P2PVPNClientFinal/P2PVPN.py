@@ -89,37 +89,37 @@ if __name__ == "__main__":
         # Keep the script running to maintain the VPN connection
         while True:
             time.sleep(60)
+    elif user_role == "client":
+        # If the user is the client, get the server public key and endpoint
+        client_peer = WireGuardVPNPeer(private_key=None, public_key=None, peer_public_key=None, peer_endpoint=None)
 
-    # If the user is the client, get the server public key and endpoint
-    client_peer = WireGuardVPNPeer(private_key=None, public_key=None, peer_public_key=None, peer_endpoint=None)
-
-    # Generate a private key and public key
-    client_peer.private_key = client_peer.generate_private_key()
-    client_peer.public_key = client_peer.generate_public_key(client_peer.private_key)
+        # Generate a private key and public key
+        client_peer.private_key = client_peer.generate_private_key()
+        client_peer.public_key = client_peer.generate_public_key(client_peer.private_key)
     
     
-    print(f"Client Private Key: {client_peer.private_key}")
-    print(f"Client Public Key: {client_peer.public_key}")
+        print(f"Client Private Key: {client_peer.private_key}")
+        print(f"Client Public Key: {client_peer.public_key}")
 
 
-    # Get user input for the server's public key and endpoint
-    server_public_key = input("Enter the server's public key: ")
-    server_endpoint = input("Enter the server's endpoint (IP address:port): ")
+        # Get user input for the server's public key and endpoint
+        server_public_key = input("Enter the server's public key: ")
+        server_endpoint = input("Enter the server's endpoint (IP address:port): ")
 
-    # Exit if the server public key or endpoint is not provided
-    if not server_public_key or not server_endpoint:
-        print("Server public key and endpoint are required. Exiting.")
-        exit()
+        # Exit if the server public key or endpoint is not provided
+        if not server_public_key or not server_endpoint:
+            print("Server public key and endpoint are required. Exiting.")
+            exit()
 
-    # Configure and start the VPN
-    client_peer.peer_public_key = server_public_key
-    client_peer.peer_endpoint = server_endpoint
+        # Configure and start the VPN
+        client_peer.peer_public_key = server_public_key
+        client_peer.peer_endpoint = server_endpoint
 
-    client_peer.configure_wireguard()
-    client_peer.start_vpn()
+        client_peer.configure_wireguard()
+        client_peer.start_vpn()
 
-    print("Connection established successfully.")
+        print("Connection established successfully.")
 
-    # Keep the script running to maintain the VPN connection
-    while True:
-        time.sleep(60)
+        # Keep the script running to maintain the VPN connection
+        while True:
+            time.sleep(60)
