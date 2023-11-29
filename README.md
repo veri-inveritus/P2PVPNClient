@@ -1,4 +1,5 @@
-P2PVPNClient \n
+P2PVPNClient 
+
 Author: David Yi <yidavidh@outlook.com, davidyi@asu.edu>
 
 Note: Please use the P2PVPNClientFinal, not the P2PVPNClient code. 
