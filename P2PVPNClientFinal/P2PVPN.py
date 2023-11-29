@@ -96,6 +96,11 @@ if __name__ == "__main__":
     # Generate a private key and public key
     client_peer.private_key = client_peer.generate_private_key()
     client_peer.public_key = client_peer.generate_public_key(client_peer.private_key)
+    
+    
+    print(f"Client Private Key: {client_peer.private_key}")
+    print(f"Client Public Key: {client_peer.public_key}")
+
 
     # Get user input for the server's public key and endpoint
     server_public_key = input("Enter the server's public key: ")
