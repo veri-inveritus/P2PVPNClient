@@ -13,10 +13,6 @@ class WireGuardVPNPeer:
         result = subprocess.run(["wg", "genkey"], capture_output=True, text=True)
         if result.returncode == 0:
             private_key = result.stdout.strip()
-            # Write the private key to a file
-            with open("private_key.txt", "w") as file:
-                file.write(private_key)
-            return private_key
         else:
             raise Exception(f"Failed to generate private key: {result.stderr}")
 
