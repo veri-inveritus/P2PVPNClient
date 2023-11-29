@@ -1,0 +1,7 @@
+cargo:rerun-if-env-changed=SODIUM_LIB_DIR
+cargo:rerun-if-env-changed=SODIUM_SHARED
+cargo:rerun-if-env-changed=SODIUM_USE_PKG_CONFIG
+cargo:rustc-link-lib=static=libsodium
+cargo:rustc-link-search=native=C:\Users\yidav\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libsodium-sys-0.2.7\msvc/x64/Debug/v142/
+cargo:include=C:\Users\yidav\OneDrive\Masters\Terms\Fall23\IFT520_Adv_System_InfoSec\Project\P2PVPNClient\target\debug\build\libsodium-sys-540691a0a1bc72d4\out\source\libsodium\src/libsodium/include
+cargo:lib=C:\Users\yidav\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libsodium-sys-0.2.7\msvc/x64/Debug/v142/

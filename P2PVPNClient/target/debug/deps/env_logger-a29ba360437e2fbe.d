@@ -1,0 +1,10 @@
+/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/deps/libenv_logger-a29ba360437e2fbe.rmeta: /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/lib.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/mod.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/regex.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/fmt.rs
+
+/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/deps/libenv_logger-a29ba360437e2fbe.rlib: /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/lib.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/mod.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/regex.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/fmt.rs
+
+/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/deps/env_logger-a29ba360437e2fbe.d: /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/lib.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/mod.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/regex.rs /home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/fmt.rs
+
+/home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/lib.rs:
+/home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/mod.rs:
+/home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/filter/regex.rs:
+/home/veri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_logger-0.5.13/src/fmt.rs:

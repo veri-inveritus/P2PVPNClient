@@ -1,0 +1,209 @@
+cargo:rerun-if-changed=src/hello.c
+TARGET = Some("x86_64-unknown-linux-gnu")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-unknown-linux-gnu")
+cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu
+CC_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_gnu
+CC_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("true")
+CARGO_CFG_TARGET_FEATURE = Some("fxsr,sse,sse2")
+cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+CFLAGS_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+CFLAGS_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-gdwarf-4" "-fno-omit-frame-pointer" "-m64" "-Wall" "-Wextra" "-o" "/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/build/wireguard-tools-rs-3065d19ad043e6ca/out/src/wireguard.o" "-c" "src/wireguard.c"
+cargo:warning=src/wireguard.c: In function ‘mnl_cb_noop’:
+
+cargo:warning=src/wireguard.c:444:47: warning: unused parameter ‘nlh’ [-Wunused-parameter]
+
+cargo:warning=  444 | static int mnl_cb_noop(const struct nlmsghdr *nlh, void *data)
+
+cargo:warning=      |                        ~~~~~~~~~~~~~~~~~~~~~~~^~~
+
+cargo:warning=src/wireguard.c:444:58: warning: unused parameter ‘data’ [-Wunused-parameter]
+
+cargo:warning=  444 | static int mnl_cb_noop(const struct nlmsghdr *nlh, void *data)
+
+cargo:warning=      |                                                    ~~~~~~^~~~
+
+cargo:warning=src/wireguard.c: In function ‘mnl_cb_error’:
+
+cargo:warning=src/wireguard.c:449:59: warning: unused parameter ‘data’ [-Wunused-parameter]
+
+cargo:warning=  449 | static int mnl_cb_error(const struct nlmsghdr *nlh, void *data)
+
+cargo:warning=      |                                                     ~~~~~~^~~~
+
+cargo:warning=src/wireguard.c: In function ‘mnl_cb_stop’:
+
+cargo:warning=src/wireguard.c:466:47: warning: unused parameter ‘nlh’ [-Wunused-parameter]
+
+cargo:warning=  466 | static int mnl_cb_stop(const struct nlmsghdr *nlh, void *data)
+
+cargo:warning=      |                        ~~~~~~~~~~~~~~~~~~~~~~~^~~
+
+cargo:warning=src/wireguard.c:466:58: warning: unused parameter ‘data’ [-Wunused-parameter]
+
+cargo:warning=  466 | static int mnl_cb_stop(const struct nlmsghdr *nlh, void *data)
+
+cargo:warning=      |                                                    ~~~~~~^~~~
+
+exit status: 0
+cargo:rerun-if-env-changed=AR_x86_64-unknown-linux-gnu
+AR_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=AR_x86_64_unknown_linux_gnu
+AR_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_AR
+HOST_AR = None
+cargo:rerun-if-env-changed=AR
+AR = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64-unknown-linux-gnu
+ARFLAGS_x86_64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64_unknown_linux_gnu
+ARFLAGS_x86_64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_ARFLAGS
+HOST_ARFLAGS = None
+cargo:rerun-if-env-changed=ARFLAGS
+ARFLAGS = None
+running: ZERO_AR_DATE="1" "ar" "cq" "/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/build/wireguard-tools-rs-3065d19ad043e6ca/out/libsys.a" "/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/build/wireguard-tools-rs-3065d19ad043e6ca/out/src/wireguard.o"
+exit status: 0
+running: "ar" "s" "/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/build/wireguard-tools-rs-3065d19ad043e6ca/out/libsys.a"
+exit status: 0
+cargo:rustc-link-lib=static=sys
+cargo:rustc-link-search=native=/mnt/c/Users/yidav/OneDrive/Masters/Terms/Fall23/IFT520_Adv_System_InfoSec/Project/P2PVPNClient/target/debug/build/wireguard-tools-rs-3065d19ad043e6ca/out
+cargo:rerun-if-changed=wireguard.h
+cargo:warning=couldn't execute `llvm-config --prefix` (error: No such file or directory (os error 2))
+cargo:warning=set the LLVM_CONFIG_PATH environment variable to the full path to a valid `llvm-config` executable (including the executable itself)
+cargo:rerun-if-changed=/usr/include/net/if.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/features-time64.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/timesize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/stdc-predef.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/cdefs.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/long-double.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/gnu/stubs.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/gnu/stubs-64.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/types.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/timesize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/typesizes.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/time64.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/clock_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/time_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/timer_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stddef.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/stdint-intn.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/endian.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/endian.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/endianness.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/byteswap.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/uintn-identity.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/select.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/select.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/time_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/endian.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/time_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/struct_mutex.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/socket.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stddef.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stddef.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/socket.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stddef.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/socket_type.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/sockaddr.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/time_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/asm/socket.h
+cargo:rerun-if-changed=/usr/include/asm-generic/socket.h
+cargo:rerun-if-changed=/usr/include/linux/posix_types.h
+cargo:rerun-if-changed=/usr/include/linux/stddef.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/asm/posix_types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/asm/posix_types_64.h
+cargo:rerun-if-changed=/usr/include/asm-generic/posix_types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/asm/bitsperlong.h
+cargo:rerun-if-changed=/usr/include/asm-generic/bitsperlong.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/asm/sockios.h
+cargo:rerun-if-changed=/usr/include/asm-generic/sockios.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h
+cargo:rerun-if-changed=/usr/include/netinet/in.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/socket.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/in.h
+cargo:rerun-if-changed=/usr/include/endian.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/byteswap.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/uintn-identity.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/sys/socket.h
+cargo:rerun-if-changed=/usr/include/time.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stddef.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/time.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/clock_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/time_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/timer_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/locale_t.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stdint.h
+cargo:rerun-if-changed=/usr/include/stdint.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/libc-header-start.h
+cargo:rerun-if-changed=/usr/include/features.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/types.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wchar.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/wordsize.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/stdint-intn.h
+cargo:rerun-if-changed=/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h
+cargo:rerun-if-changed=/usr/include/clang/14.0.0/include/stdbool.h
