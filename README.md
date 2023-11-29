@@ -45,7 +45,7 @@ Follow these steps to run the WireGuard VPN setup code:
 4. **Run the Code:**
    - Execute the code by running the following command in the terminal:
      ```bash
-     python wireguard_vpn_setup.py
+     python3 P2PVPN.py
      ```
      - The script will prompt you to specify whether you are the client or the host.
      - Follow the on-screen instructions to provide the necessary input, including public keys and endpoints.
