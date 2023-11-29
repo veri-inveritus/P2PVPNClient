@@ -1,12 +1,13 @@
 import subprocess
 import time
 
-class WireGuardVPNClient:
-    def __init__(self, private_key, server_public_key, server_endpoint):
+class WireGuardVPNPeer:
+    def __init__(self, private_key, public_key, peer_public_key, peer_endpoint):
         self.private_key = private_key
-        self.server_public_key = server_public_key
-        self.server_endpoint = server_endpoint
-        
+        self.public_key = public_key
+        self.peer_public_key = peer_public_key
+        self.peer_endpoint = peer_endpoint
+
     def generate_private_key(self):
         # Generate a private key using the 'wg genkey' command
         result = subprocess.run(["wg", "genkey"], capture_output=True, text=True)
@@ -18,15 +19,12 @@ class WireGuardVPNClient:
             return private_key
         else:
             raise Exception(f"Failed to generate private key: {result.stderr}")
-        
+
     def generate_public_key(self, private_key):
         # Generate a public key using the 'wg pubkey' command
         result = subprocess.run(["wg", "pubkey"], input=private_key, capture_output=True, text=True)
         if result.returncode == 0:
             return result.stdout.strip()
-            # Write the Public key to a file
-            with open("public_key.txt", "w") as file:
-                file.write(public_key)
         else:
             raise Exception(f"Failed to generate public key: {result.stderr}")
 
@@ -35,8 +33,11 @@ class WireGuardVPNClient:
         subprocess.run(["sudo", "ip", "link", "add", "dev", "wg0", "type", "wireguard"])
         subprocess.run(["sudo", "wg", "set", "wg0", "private-key", self.private_key])
         subprocess.run(["sudo", "ip", "addr", "add", "dev", "wg0", "10.0.0.2/24"])
-        subprocess.run(["sudo", "wg", "set", "wg0", "peer", self.server_public_key, "endpoint", self.server_endpoint])
+        subprocess.run(["sudo", "wg", "set", "wg0", "peer", self.peer_public_key, "endpoint", self.peer_endpoint])
         subprocess.run(["sudo", "ip", "link", "set", "up", "dev", "wg0"])
+        
+        # Add routing to ensure traffic goes through the VPN
+        subprocess.run(["sudo", "ip", "route", "add", "10.0.0.0/24", "dev", "wg0"])
 
     def start_vpn(self):
         # Start the WireGuard VPN
@@ -47,64 +48,77 @@ class WireGuardVPNClient:
         subprocess.run(["sudo", "wg", "down", "wg0"])
         subprocess.run(["sudo", "ip", "link", "delete", "dev", "wg0"])
         
+        # Remove the added route when stopping the VPN
+        subprocess.run(["sudo", "ip", "route", "del", "10.0.0.0/24"])
+
     def transfer_file(self, file_path):
         # Transfer a file using scp
-        result = subprocess.run(["scp", file_path, f"{self.server_endpoint}:/path/on/server/"], capture_output=True, text=True)
+        result = subprocess.run(["scp", file_path, f"{self.peer_endpoint}:/path/on/peer/"], capture_output=True, text=True)
         if result.returncode != 0:
             raise Exception(f"Failed to transfer file: {result.stderr}")
         else:
             print("File transferred successfully.")
 
 if __name__ == "__main__":
-    print("The Private key has been generated and is stored in the file: private_key.txt")
-    
-    # Get the server public key from the user
-    server_public_key = input("Enter the server public key: ")
-    
-    # Exit if the server public key is not provided
-    if not server_public_key:
-        print("Server public key is required. Exiting.")
-        exit()
-        
-    # Get the server endpoint from the user 
-    server_endpoint = input("Enter the server endpoint (IP address:port): ")
-    
-    # Exit if the server endpoint is not provided
-    if not server_endpoint:
-        print("Server endpoint is required. Exiting.")
-        exit()
-        
-    # Get user input for the file path to transfer 
-    file_path = input("Enter the file path to transfer: ")
+    print("WireGuard VPN Setup")
 
-    # Exit if the file path is not provided
-    if not file_path:
-        print("File path is required. Exiting.")
-        exit()
-    
-    vpn_client = WireGuardVPNClient(private_key=None, server_public_key=server_public_key, server_endpoint=server_endpoint)
+    # Ask the user if they are the client or the host
+    user_role = input("Are you the client or the host? (client/host): ").lower()
 
-    try:
-        # Generate a private key
-        vpn_client.private_key = vpn_client.generate_private_key()
+    if user_role not in ["client", "host"]:
+        print("Invalid choice. Exiting.")
+        exit()
+
+    # If the user is the host, generate a private key and print the public key
+    if user_role == "host":
+        host_peer = WireGuardVPNPeer(private_key=None, public_key=None, peer_public_key=None, peer_endpoint=None)
+
+        # Generate a private key and public key
+        host_peer.private_key = host_peer.generate_private_key()
+        host_peer.public_key = host_peer.generate_public_key(host_peer.private_key)
+
+        print(f"Host Private Key: {host_peer.private_key}")
+        print(f"Host Public Key: {host_peer.public_key}")
+
+        # Get user input for the client's public key and endpoint
+        client_public_key = input("Enter the client's public key: ")
+        client_endpoint = input("Enter the client's endpoint (IP address:port): ")
 
         # Configure and start the VPN
-        vpn_client.configure_wireguard()
-        vpn_client.start_vpn()
-        
+        host_peer.configure_wireguard()
+        host_peer.start_vpn()
+
         print("Connection established successfully.")
 
         # Keep the script running to maintain the VPN connection
         while True:
             time.sleep(60)
-            
-    except Exception as e:
-        print(f"Error: {e}")
-        # Stop the VPN on error
-        vpn_client.stop_vpn()
-        print("VPN Stopped.")
 
-    except KeyboardInterrupt:
-        # Stop the VPN on keyboard interrupt
-        vpn_client.stop_vpn()
-        print("VPN Stopped.")
+    # If the user is the client, get the server public key and endpoint
+    client_peer = WireGuardVPNPeer(private_key=None, public_key=None, peer_public_key=None, peer_endpoint=None)
+
+    # Generate a private key and public key
+    client_peer.private_key = client_peer.generate_private_key()
+    client_peer.public_key = client_peer.generate_public_key(client_peer.private_key)
+
+    # Get user input for the server's public key and endpoint
+    server_public_key = input("Enter the server's public key: ")
+    server_endpoint = input("Enter the server's endpoint (IP address:port): ")
+
+    # Exit if the server public key or endpoint is not provided
+    if not server_public_key or not server_endpoint:
+        print("Server public key and endpoint are required. Exiting.")
+        exit()
+
+    # Configure and start the VPN
+    client_peer.peer_public_key = server_public_key
+    client_peer.peer_endpoint = server_endpoint
+
+    client_peer.configure_wireguard()
+    client_peer.start_vpn()
+
+    print("Connection established successfully.")
+
+    # Keep the script running to maintain the VPN connection
+    while True:
+        time.sleep(60)
