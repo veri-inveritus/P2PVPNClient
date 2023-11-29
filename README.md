@@ -1,4 +1,8 @@
 P2PVPNClient
+Author: David Yi <yidavidh@outlook.com, davidyi@asu.edu>
+
+Note: Please use the P2PVPNClientFinal, not the P2PVPNClient code. 
+P2PVPNClient is the same implementation but with Rust and is still currently in Development
 
 Created under the Apache 2.0 Open Source License
 
