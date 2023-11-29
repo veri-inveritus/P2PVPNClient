@@ -1,4 +1,9 @@
-P2PVPNClient
+P2PVPNClient 
+
+Author: David Yi <yidavidh@outlook.com, davidyi@asu.edu>
+
+Note: Please use the P2PVPNClientFinal, not the P2PVPNClient code. 
+P2PVPNClient is the same implementation but with Rust and is still currently in Development
 
 Created under the Apache 2.0 Open Source License
 
@@ -40,7 +45,7 @@ Follow these steps to run the WireGuard VPN setup code:
 4. **Run the Code:**
    - Execute the code by running the following command in the terminal:
      ```bash
-     python wireguard_vpn_setup.py
+     python3 P2PVPN.py
      ```
      - The script will prompt you to specify whether you are the client or the host.
      - Follow the on-screen instructions to provide the necessary input, including public keys and endpoints.
