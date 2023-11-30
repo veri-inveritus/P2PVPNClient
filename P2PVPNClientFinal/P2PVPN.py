@@ -1,5 +1,4 @@
 import subprocess
-import time
 
 class WireGuardVPNPeer:
     def __init__(self, private_key, public_key, peer_public_key, peer_endpoint):
@@ -118,10 +117,18 @@ if __name__ == "__main__":
         print(f"Host Public Key: {host_peer.public_key}")
 
         # Get user input for the client's public key and endpoint
-        host_peer.client_public_key = input("Enter the client's public key: ")
-        host_peer.client_endpoint = input("Enter the client's endpoint (IP address:port): ")
+        client_public_key = input("Enter the client's public key: ")
+        client_endpoint = input("Enter the client's endpoint (IP address:port): ")
+        
+        # Exit if the client public key or endpoint is not provided
+        if not client_public_key or not client_endpoint:
+            print("Client public key and endpoint are required. Exiting.")
+            exit()
 
         # Configure and start the VPN
+        host_peer.peer_public_key = client_public_key
+        host_peer.peer_endpoint = client_endpoint        
+        
         host_peer.configure_host_wireguard()
         host_peer.start_vpn_host()
 
@@ -157,23 +164,21 @@ if __name__ == "__main__":
         client_peer.private_key = client_peer.generate_private_key()
         client_peer.public_key = client_peer.generate_public_key(client_peer.private_key)
     
-    
         print(f"Client Private Key: {client_peer.private_key}")
         print(f"Client Public Key: {client_peer.public_key}")
 
+        # Get user input for the host's public key and endpoint
+        host_public_key = input("Enter the host's public key: ")
+        host_endpoint = input("Enter the host's endpoint (IP address:port): ")
 
-        # Get user input for the server's public key and endpoint
-        server_public_key = input("Enter the server's public key: ")
-        server_endpoint = input("Enter the server's endpoint (IP address:port): ")
-
-        # Exit if the server public key or endpoint is not provided
-        if not server_public_key or not server_endpoint:
-            print("Server public key and endpoint are required. Exiting.")
+        # Exit if the host public key or endpoint is not provided
+        if not host_public_key or not host_endpoint:
+            print("Host public key and endpoint are required. Exiting.")
             exit()
 
         # Configure and start the VPN
-        client_peer.peer_public_key = server_public_key
-        client_peer.peer_endpoint = server_endpoint
+        client_peer.peer_public_key = host_public_key
+        client_peer.peer_endpoint = host_endpoint
 
         client_peer.configure_client_wireguard()
         client_peer.start_vpn_client()
