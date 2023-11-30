@@ -2,7 +2,7 @@ import subprocess
 import time
 
 class WireGuardVPNPeer:
-    def __init__(self, private_key="", public_key=None, peer_public_key, peer_endpoint):
+    def __init__(self, private_key="", public_key=None, peer_public_key=None, peer_endpoint=None):
         self.private_key = private_key
         self.public_key = public_key
         self.peer_public_key = peer_public_key
