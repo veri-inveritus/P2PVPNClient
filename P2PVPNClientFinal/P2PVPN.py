@@ -112,20 +112,19 @@ if __name__ == "__main__":
         # Keep the script running to maintain the VPN connection and run test
         try:
             while True:
-                time.sleep(60)
                 action = input("Do you want to (1) transfer a file, (2) stop the VPN, or (3) exit? Please type a number: ")
                 
                 if action == "1":
-                    file_path = input("Enter the file path of the file you wish to transfer to the client: ")
+                    file_path = input("\nEnter the file path of the file you wish to transfer to the client: ")
                     host_peer.transfer_file(file_path)
                 elif action == "2":
                     host_peer.stop_vpn_host()
-                    print("VPN connection has been terminated. Have a good day!")
+                    print("\nVPN connection has been terminated. Have a good day!")
                 elif action == "3":
                     host_peer.stop_vpn_host()
                     exit()
                 else:
-                    print("Please enter a valid number.")
+                    print("\nPlease enter a valid number.")
         
         except KeyboardInterrupt:
             host_peer.stop_vpn_host()
@@ -166,20 +165,19 @@ if __name__ == "__main__":
         # Keep the script running to maintain the VPN connection and run test
         try:
             while True:
-                time.sleep(60)
                 action = input("Do you want to (1) transfer a file, (2) stop the VPN, or (3) exit? Please type a number: ")
                 
                 if action == "1":
-                    file_path = input("Enter the file path of the file you wish to transfer to the client: ")
+                    file_path = input("\nEnter the file path of the file you wish to transfer to the client: ")
                     client_peer.transfer_file(file_path)
                 elif action == "2":
                     client_peer.stop_vpn_client()
-                    print("VPN connection has been terminated. Have a good day!")
+                    print("\nVPN connection has been terminated. Have a good day!")
                 elif action == "3":
                     client_peer.stop_vpn_client()
                     exit()
                 else:
-                    print("Please enter a valid number.")
+                    print("\nPlease enter a valid number.")
         
         except KeyboardInterrupt:
             host_peer.stop_vpn_client()
