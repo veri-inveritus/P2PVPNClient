@@ -2,7 +2,7 @@ import subprocess
 import time
 
 class WireGuardVPNPeer:
-    def __init__(self, private_key="", public_key=None, peer_public_key=None, peer_endpoint=None):
+    def __init__(self, private_key, public_key, peer_public_key, peer_endpoint):
         self.private_key = private_key
         self.public_key = public_key
         self.peer_public_key = peer_public_key
@@ -28,7 +28,7 @@ class WireGuardVPNPeer:
         # Configure WireGuard
         subprocess.run(["sudo", "ip", "link", "add", "dev", "wg0", "type", "wireguard"])
         subprocess.run(["sudo", "wg", "set", "wg0", "private-key", self.private_key])
-        subprocess.run(["sudo", "ip", "addr", "add", "dev", "wg0", "10.0.0.1/24"])
+        subprocess.run(["sudo", "ip", "addr", "add", "dev", "wg0", "10.0.0.3/24"])
         subprocess.run(["sudo", "wg", "set", "wg0", "peer", self.peer_public_key, "endpoint", self.peer_endpoint])
         subprocess.run(["sudo", "ip", "link", "set", "up", "dev", "wg0"])
         
@@ -118,8 +118,8 @@ if __name__ == "__main__":
         print(f"Host Public Key: {host_peer.public_key}")
 
         # Get user input for the client's public key and endpoint
-        client_public_key = input("Enter the client's public key: ")
-        client_endpoint = input("Enter the client's endpoint (IP address:port): ")
+        host_peer.client_public_key = input("Enter the client's public key: ")
+        host_peer.client_endpoint = input("Enter the client's endpoint (IP address:port): ")
 
         # Configure and start the VPN
         host_peer.configure_host_wireguard()
