@@ -2,7 +2,7 @@ import subprocess
 import time
 
 class WireGuardVPNPeer:
-    def __init__(self, private_key, public_key, peer_public_key, peer_endpoint):
+    def __init__(self, private_key="", public_key=None, peer_public_key, peer_endpoint):
         self.private_key = private_key
         self.public_key = public_key
         self.peer_public_key = peer_public_key
@@ -35,6 +35,10 @@ class WireGuardVPNPeer:
         # Add routing to ensure traffic goes through the VPN
         subprocess.run(["sudo", "ip", "route", "add", "10.0.0.0/24", "dev", "wg0"])
         
+              # Open port 22 for scp using ufw
+        subprocess.run(["sudo", "ufw", "allow", "22"])
+        subprocess.run(["sudo", "ufw", "enable"])
+        
     def configure_client_wireguard(self):
          # Configure WireGuard
         subprocess.run(["sudo", "ip", "link", "add", "dev", "wg1", "type", "wireguard"])
@@ -45,6 +49,10 @@ class WireGuardVPNPeer:
         
         # Add routing to ensure traffic goes through the VPN
         subprocess.run(["sudo", "ip", "route", "add", "10.0.0.0/24", "dev", "wg1"])
+        
+              # Open port 22 for scp using ufw
+        subprocess.run(["sudo", "ufw", "allow", "22"])
+        subprocess.run(["sudo", "ufw", "enable"])
 
     def start_vpn_host(self):
         # Start the WireGuard VPN
@@ -62,6 +70,11 @@ class WireGuardVPNPeer:
         # Remove the added route when stopping the VPN
         subprocess.run(["sudo", "ip", "route", "del", "10.0.0.0/24"])
         
+        # Close port 22 for scp using ufw
+        subprocess.run(["sudo", "ufw", "deny", "22"])
+        subprocess.run(["sudo", "ufw", "enable"])
+
+        
     def stop_vpn_client(self):
         # Stop the WireGuard VPN
         subprocess.run(["sudo", "wg", "down", "wg1"])
@@ -69,6 +82,11 @@ class WireGuardVPNPeer:
         
         # Remove the added route when stopping the VPN
         subprocess.run(["sudo", "ip", "route", "del", "10.0.0.0/24"])
+        
+        # Close port 22 for scp using ufw
+        subprocess.run(["sudo", "ufw", "deny", "22"])
+        subprocess.run(["sudo", "ufw", "enable"])
+
 
     def transfer_file(self, file_path):
         # Transfer a file using scp
