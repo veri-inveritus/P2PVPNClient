@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     # If the user is the host, generate a private key and print the public key
     if user_role == "host":
-        host_peer = WireGuardVPNPeer(public_key=None, peer_public_key=None, peer_endpoint=None)
+        host_peer = WireGuardVPNPeer(private_key=None, public_key=None, peer_public_key=None, peer_endpoint=None)
 
         # Generate a private key and public key
         host_peer.private_key = host_peer.generate_private_key()
