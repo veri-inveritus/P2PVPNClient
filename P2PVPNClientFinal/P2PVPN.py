@@ -142,9 +142,11 @@ if __name__ == "__main__":
                 if action == "1":
                     file_path = input("\nEnter the file path of the file you wish to transfer to the client: ")
                     host_peer.transfer_file(file_path)
+                    exit()
                 elif action == "2":
                     host_peer.stop_vpn_host()
                     print("\nVPN connection has been terminated. Have a good day!")
+                    exit()
                 elif action == "3":
                     host_peer.stop_vpn_host()
                     exit()
@@ -193,9 +195,11 @@ if __name__ == "__main__":
                 if action == "1":
                     file_path = input("\nEnter the file path of the file you wish to transfer to the client: ")
                     client_peer.transfer_file(file_path)
+                    exit()
                 elif action == "2":
                     client_peer.stop_vpn_client()
                     print("\nVPN connection has been terminated. Have a good day!")
+                    exit()
                 elif action == "3":
                     client_peer.stop_vpn_client()
                     exit()
