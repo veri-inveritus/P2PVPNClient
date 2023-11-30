@@ -37,10 +37,10 @@ class WireGuardVPNPeer:
         
     def configure_client_wireguard(self):
          # Configure WireGuard
-        subprocess.run(["sudo", "ip", "link", "add", "dev", "wg0", "type", "wireguard"])
-        subprocess.run(["sudo", "wg", "set", "wg0", "private-key", self.private_key])
-        subprocess.run(["sudo", "ip", "addr", "add", "dev", "wg0", "10.0.0.2/24"])
-        subprocess.run(["sudo", "wg", "set", "wg0", "peer", self.peer_public_key, "endpoint", self.peer_endpoint])
+        subprocess.run(["sudo", "ip", "link", "add", "dev", "wg1", "type", "wireguard"])
+        subprocess.run(["sudo", "wg", "set", "wg1", "private-key", self.private_key])
+        subprocess.run(["sudo", "ip", "addr", "add", "dev", "wg1", "10.0.0.2/24"])
+        subprocess.run(["sudo", "wg", "set", "wg1", "peer", self.peer_public_key, "endpoint", self.peer_endpoint])
         subprocess.run(["sudo", "ip", "link", "set", "up", "dev", "wg1"])
         
         # Add routing to ensure traffic goes through the VPN
@@ -52,7 +52,7 @@ class WireGuardVPNPeer:
         
     def start_vpn_client(self):
         #Start the WireGurad VPN
-        subprocess.run(["sudo", "wg", "up", "wg0"])
+        subprocess.run(["sudo", "wg", "up", "wg1"])
 
     def stop_vpn_host(self):
         # Stop the WireGuard VPN
@@ -128,7 +128,7 @@ if __name__ == "__main__":
                     print("Please enter a valid number.")
         
         except KeyboardInterrupt:
-            host_peer.stop_vpn_client()
+            host_peer.stop_vpn_host()
             print("\nVPN connection has been terminated. Exiting.")
                 
             
@@ -159,7 +159,7 @@ if __name__ == "__main__":
         client_peer.peer_endpoint = server_endpoint
 
         client_peer.configure_client_wireguard()
-        client_peer.start_vpn()
+        client_peer.start_vpn_client()
 
         print("Connection established successfully.")
 
